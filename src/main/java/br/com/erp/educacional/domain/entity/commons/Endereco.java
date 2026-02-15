@@ -8,7 +8,7 @@ import lombok.Setter;
 public class Endereco {
     private int id;
     private String rua;
-    private String cideda;
+    private String cidade;
     private String bairro;
     private String estado;
     private String pais;

@@ -1,8 +1,6 @@
 package br.com.erp.educacional.adapter.controller;
 
-import br.com.erp.educacional.adapter.dto.ContatoDto;
 import br.com.erp.educacional.adapter.dto.CursoDto;
-import br.com.erp.educacional.domain.entity.contato.Contato;
 import br.com.erp.educacional.domain.entity.curso.Curso;
 import br.com.erp.educacional.usecases.curso.CasoDeUsoCriarCurso;
 import org.springframework.web.bind.annotation.PostMapping;

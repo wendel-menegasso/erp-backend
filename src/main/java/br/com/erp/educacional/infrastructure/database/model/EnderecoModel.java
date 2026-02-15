@@ -13,14 +13,14 @@ public class EnderecoModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String rua;
-    private String cideda;
+    private String cidade;
     private String bairro;
     private String estado;
     private String pais;
     private String cep;
     private int numero;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "aluno_id")
     private AlunoModel aluno;
 

@@ -46,8 +46,8 @@ public class NotaRepositoryJPA implements NotaRepository {
         cursoModel.setId(nota.getAluno().getCurso().getId());
         alunoModel.setCurso(cursoModel);
 
-        List<EnderecoModel> enderecoModelList = getEnderecoModels(nota);
-        alunoModel.setEnderecos(enderecoModelList);
+        EnderecoModel enderecoModel = getEnderecoModel(nota);
+        alunoModel.setEnderecos(enderecoModel);
 
         ContatoModel contatoModel = getContatoModel(nota);
         alunoModel.setContatos(contatoModel);
@@ -84,19 +84,17 @@ public class NotaRepositoryJPA implements NotaRepository {
         return documentoModel;
     }
 
-    private static List<EnderecoModel> getEnderecoModels(Nota nota) {
-        List<EnderecoModel> enderecoModelList = new ArrayList<>();
+    private static EnderecoModel getEnderecoModels(Nota nota) {
         EnderecoModel enderecoModel = new EnderecoModel();
         enderecoModel.setCep(nota.getAluno().getEndereco().getCep());
         enderecoModel.setPais(nota.getAluno().getEndereco().getPais());
-        enderecoModel.setCideda(nota.getAluno().getEndereco().getCideda());
+        enderecoModel.setCidade(nota.getAluno().getEndereco().getCidade());
         enderecoModel.setRua(nota.getAluno().getEndereco().getRua());
         enderecoModel.setEstado(nota.getAluno().getEndereco().getEstado());
         enderecoModel.setBairro(nota.getAluno().getEndereco().getBairro());
         enderecoModel.setNumero(nota.getAluno().getEndereco().getNumero());
         enderecoModel.setNumero(nota.getAluno().getEndereco().getNumero());
-        enderecoModelList.add(enderecoModel);
-        return enderecoModelList;
+        return enderecoModel;
     }
 
     private void fillProfessor(ProfessorModel professorModel, Nota nota) {
@@ -152,7 +150,7 @@ public class NotaRepositoryJPA implements NotaRepository {
         EnderecoModel enderecoModel = new EnderecoModel();
         enderecoModel.setCep(nota.getProfessor().getEndereco().getCep());
         enderecoModel.setPais(nota.getProfessor().getEndereco().getPais());
-        enderecoModel.setCideda(nota.getProfessor().getEndereco().getCideda());
+        enderecoModel.setCidade(nota.getProfessor().getEndereco().getCidade());
         enderecoModel.setRua(nota.getProfessor().getEndereco().getRua());
         enderecoModel.setEstado(nota.getProfessor().getEndereco().getEstado());
         enderecoModel.setBairro(nota.getProfessor().getEndereco().getBairro());

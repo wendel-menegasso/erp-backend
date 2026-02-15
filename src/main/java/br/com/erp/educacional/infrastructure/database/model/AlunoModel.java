@@ -19,8 +19,8 @@ public class AlunoModel {
     private String pai;
     private String mae;
 
-    @OneToMany(mappedBy = "aluno", cascade = CascadeType.ALL)
-    private List<EnderecoModel> enderecos;
+    @OneToOne(mappedBy = "aluno", cascade = CascadeType.ALL)
+    private EnderecoModel enderecos;
 ;
 
     @OneToOne

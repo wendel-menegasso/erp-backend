@@ -66,7 +66,7 @@ public class DisciplinaRepoCustom implements DisciplinaRepository {
         enderecoModel.setRua(disciplina.getProfessor().getEndereco().getBairro());
         enderecoModel.setPais(disciplina.getProfessor().getEndereco().getBairro());
         enderecoModel.setEstado(disciplina.getProfessor().getEndereco().getBairro());
-        enderecoModel.setCideda(disciplina.getProfessor().getEndereco().getBairro());
+        enderecoModel.setCidade(disciplina.getProfessor().getEndereco().getBairro());
         enderecoModel.setCep(disciplina.getProfessor().getEndereco().getBairro());
 
         enderecoModel.setProfessor(professorModel);

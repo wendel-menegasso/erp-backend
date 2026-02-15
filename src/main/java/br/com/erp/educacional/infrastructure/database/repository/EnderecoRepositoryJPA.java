@@ -19,7 +19,7 @@ public class EnderecoRepositoryJPA implements EnderecoRepository {
         enderecoModel.setProfessor(enderecoModel.getProfessor());
         enderecoModel.setCep(enderecoModel.getCep());
         enderecoModel.setEstado(enderecoModel.getEstado());
-        enderecoModel.setCideda(enderecoModel.getCideda());
+        enderecoModel.setCidade(enderecoModel.getCidade());
         enderecoModel.setPais(enderecoModel.getPais());
         enderecoModel.setRua(enderecoModel.getRua());
         enderecoModel.setBairro(enderecoModel.getBairro());

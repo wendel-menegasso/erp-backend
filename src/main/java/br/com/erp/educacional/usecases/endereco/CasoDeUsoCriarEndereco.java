@@ -18,7 +18,7 @@ public class CasoDeUsoCriarEndereco {
         endereco.setNumero(enderecoDto.getNumero());
         endereco.setPais(enderecoDto.getPais());
         endereco.setEstado(enderecoDto.getEstado());
-        endereco.setCideda(enderecoDto.getCideda());
+        endereco.setCidade(enderecoDto.getCidade());
         endereco.setRua(enderecoDto.getRua());
         enderecoRepository.save(endereco);
     }
