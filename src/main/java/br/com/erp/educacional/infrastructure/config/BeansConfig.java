@@ -3,11 +3,13 @@ package br.com.erp.educacional.infrastructure.config;
 import br.com.erp.educacional.domain.repository.common.DocumentoRepository;
 import br.com.erp.educacional.domain.repository.common.EnderecoRepository;
 import br.com.erp.educacional.domain.repository.contato.ContatoRepository;
+import br.com.erp.educacional.domain.repository.curso.CursoRepository;
 import br.com.erp.educacional.domain.repository.disciplina.DisciplinaRepository;
 import br.com.erp.educacional.domain.repository.nota.NotaRepository;
 import br.com.erp.educacional.domain.repository.turma.TurmaRepository;
 import br.com.erp.educacional.infrastructure.database.repository.*;
 import br.com.erp.educacional.usecases.contato.CasoDeUsoCriarContato;
+import br.com.erp.educacional.usecases.curso.CasoDeUsoCriarCurso;
 import br.com.erp.educacional.usecases.disciplina.CasoDeUsoCriarDisciplina;
 import br.com.erp.educacional.usecases.disciplina.CasoDeUsoVerificarSeDisciplinaExiste;
 import br.com.erp.educacional.usecases.documento.CasoDeUsoCriarDocumento;
@@ -22,11 +24,6 @@ public class BeansConfig {
 
     @Bean
     public ContatoRepository contatoRepository() { return  new ContatoRepositoryJPA(); }
-
-    @Bean
-    public CasoDeUsoCriarContato casoDeUsoCriarContato(ContatoRepository repo) {
-        return new CasoDeUsoCriarContato(repo);
-    }
 
     @Bean
     public NotaRepository notaRepository() {
@@ -46,6 +43,14 @@ public class BeansConfig {
 
     @Bean
     public TurmaRepository turmaRepository() {return  new TurmaRepositoryJPA();}
+
+    @Bean
+    public CursoRepository cursoRepository() {return  new CursoRepositoryJPA();}
+
+    @Bean
+    public CasoDeUsoCriarContato casoDeUsoCriarContato(ContatoRepository repo) {
+        return new CasoDeUsoCriarContato(repo);
+    }
 
     @Bean
     public CasoDeUsoCriarNota casoDeUsoCriarNota(NotaRepository repo) {
@@ -75,5 +80,10 @@ public class BeansConfig {
     @Bean
     public CasoDeUsoCriarTurma casoDeUsoCriarTurma(TurmaRepository repo) {
         return new CasoDeUsoCriarTurma(repo);
+    }
+
+    @Bean
+    public CasoDeUsoCriarCurso casoDeUsoCriarCurso(CursoRepository repo) {
+        return new CasoDeUsoCriarCurso(repo);
     }
 }
