@@ -11,9 +11,8 @@ public class CasoDeUsoVerificarSeDisciplinaExiste {
         this.disciplinaRepo = disciplinaRpo;
     }
 
-    public boolean execute(int id, String nome) {
+    public boolean execute(String nome) {
         Disciplina disciplina = new Disciplina();
-        disciplina.setId(id);
         disciplina.setNome(nome);
         return disciplinaRepo.disciplinaExiste(disciplina);
     }

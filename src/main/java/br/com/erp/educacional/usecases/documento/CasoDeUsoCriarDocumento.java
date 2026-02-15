@@ -1,11 +1,8 @@
 package br.com.erp.educacional.usecases.documento;
 
 import br.com.erp.educacional.adapter.dto.DocumentoDto;
-import br.com.erp.educacional.adapter.dto.EnderecoDto;
 import br.com.erp.educacional.domain.entity.commons.Documento;
-import br.com.erp.educacional.domain.entity.commons.Endereco;
 import br.com.erp.educacional.domain.repository.common.DocumentoRepository;
-import br.com.erp.educacional.domain.repository.common.EnderecoRepository;
 
 public class CasoDeUsoCriarDocumento {
     private final DocumentoRepository repository;

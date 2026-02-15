@@ -10,7 +10,6 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class EnderecoDto {
-    private int id;
     private String rua;
     private String cideda;
     private String bairro;

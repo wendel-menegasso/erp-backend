@@ -11,12 +11,11 @@ public class CasoDeUsoCriarDisciplina {
         this.disciplinaRepo = disciplinaRpo;
     }
 
-    public void execute(int id, String nome) {
+    public void execute(String nome) {
         Disciplina disciplina = new Disciplina();
-        disciplina.setId(id);
         disciplina.setNome(nome);
         CasoDeUsoVerificarSeDisciplinaExiste casoDeUsoVerificarSeDisciplinaExiste = new CasoDeUsoVerificarSeDisciplinaExiste(disciplinaRepo);
-        if (!casoDeUsoVerificarSeDisciplinaExiste.execute(id, nome)) {
+        if (!casoDeUsoVerificarSeDisciplinaExiste.execute(nome)) {
             disciplinaRepo.save(disciplina);
         }
     }

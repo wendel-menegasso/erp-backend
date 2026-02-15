@@ -10,6 +10,5 @@ import lombok.Setter;
 @Getter
 @Setter
 public class DisciplinaDTO {
-    public int id;
     public String nomeDisciplina;
 }

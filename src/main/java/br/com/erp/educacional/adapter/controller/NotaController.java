@@ -17,7 +17,7 @@ public class NotaController {
 
     @PostMapping("/notas")
     public void criar(@RequestBody NotaDTO dto) {
-        useCase.execute(dto.id, dto.aluno, dto.disciplina, dto.professor, dto.peso, dto.nota);
+        useCase.execute(dto.aluno, dto.disciplina, dto.professor, dto.peso, dto.nota);
     }
 }
 

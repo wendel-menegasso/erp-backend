@@ -13,9 +13,9 @@ public class CasoDeUsoCriarNota {
         this.gradeRepo = gradeRepo;
     }
 
-    public void execute(int id, Aluno aluno, Disciplina disciplina, Professor professor, int peso, double nota) {
+    public void execute(Aluno aluno, Disciplina disciplina, Professor professor, int peso, double nota) {
         Nota nota1 = new Nota();
-        nota1.registrarNota(id, aluno, disciplina, professor, peso, nota);
+        nota1.registrarNota(aluno, disciplina, professor, peso, nota);
         gradeRepo.save(nota1);
     }
 }

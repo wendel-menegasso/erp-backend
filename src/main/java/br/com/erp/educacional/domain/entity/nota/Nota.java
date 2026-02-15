@@ -22,8 +22,7 @@ public class Nota{
     private List<Nota> notas = new ArrayList<>();
     private double notaFinal;
 
-    public void registrarNota(int id, Aluno aluno, Disciplina disciplina, Professor professor, int peso, double nota) {
-        this.id = id;
+    public void registrarNota(Aluno aluno, Disciplina disciplina, Professor professor, int peso, double nota) {
         this.aluno = aluno;
         this.disciplina = disciplina;
         this.professor = professor;

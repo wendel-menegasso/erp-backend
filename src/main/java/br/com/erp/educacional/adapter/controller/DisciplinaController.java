@@ -16,6 +16,6 @@ public class DisciplinaController {
 
     @PostMapping("/disciplina")
     public void criar(@RequestBody DisciplinaDTO dto) {
-        useCase.execute(dto.id, dto.nomeDisciplina);
+        useCase.execute(dto.nomeDisciplina);
     }
 }

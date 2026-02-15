@@ -5,6 +5,7 @@ import br.com.erp.educacional.domain.repository.common.EnderecoRepository;
 import br.com.erp.educacional.domain.repository.contato.ContatoRepository;
 import br.com.erp.educacional.domain.repository.disciplina.DisciplinaRepository;
 import br.com.erp.educacional.domain.repository.nota.NotaRepository;
+import br.com.erp.educacional.domain.repository.turma.TurmaRepository;
 import br.com.erp.educacional.infrastructure.database.repository.*;
 import br.com.erp.educacional.usecases.contato.CasoDeUsoCriarContato;
 import br.com.erp.educacional.usecases.disciplina.CasoDeUsoCriarDisciplina;
@@ -12,6 +13,7 @@ import br.com.erp.educacional.usecases.disciplina.CasoDeUsoVerificarSeDisciplina
 import br.com.erp.educacional.usecases.documento.CasoDeUsoCriarDocumento;
 import br.com.erp.educacional.usecases.endereco.CasoDeUsoCriarEndereco;
 import br.com.erp.educacional.usecases.nota.CasoDeUsoCriarNota;
+import br.com.erp.educacional.usecases.turma.CasoDeUsoCriarTurma;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -43,6 +45,9 @@ public class BeansConfig {
     public DocumentoRepository documentoRepository() {return new DocumentoRepositoryJPA();}
 
     @Bean
+    public TurmaRepository turmaRepository() {return  new TurmaRepositoryJPA();}
+
+    @Bean
     public CasoDeUsoCriarNota casoDeUsoCriarNota(NotaRepository repo) {
         return new CasoDeUsoCriarNota(repo);
     }
@@ -65,5 +70,10 @@ public class BeansConfig {
     @Bean
     public CasoDeUsoCriarDocumento casoDeUsoCriarDocumento(DocumentoRepository repo) {
         return new CasoDeUsoCriarDocumento(repo);
+    }
+
+    @Bean
+    public CasoDeUsoCriarTurma casoDeUsoCriarTurma(TurmaRepository repo) {
+        return new CasoDeUsoCriarTurma(repo);
     }
 }
