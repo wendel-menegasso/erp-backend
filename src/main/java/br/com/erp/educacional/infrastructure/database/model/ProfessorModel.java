@@ -21,11 +21,11 @@ public class ProfessorModel {
     @OneToOne(mappedBy = "professor", cascade = CascadeType.ALL)
     private EnderecoModel enderecos;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "documento_id")
     private DocumentoModel documentos;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "contatos_id")
     private ContatoModel contatos;
 

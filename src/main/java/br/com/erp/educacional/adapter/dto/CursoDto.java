@@ -11,7 +11,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CursoDto {
-    private int id;
+    private Integer id;
     private String nome;
     private Periodo periodo;
 }

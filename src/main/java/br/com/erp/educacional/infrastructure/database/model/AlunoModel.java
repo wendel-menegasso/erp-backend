@@ -23,24 +23,24 @@ public class AlunoModel {
     private EnderecoModel enderecos;
 ;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "contatos_id")
     private ContatoModel contatos;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "documento_id")
     private DocumentoModel documentos;
 
     private int numeroDeMatricula;
     private boolean bolsista;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "curso_id")
     private CursoModel curso;
 
     private int valorBolsa;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "turma_id")
     private TurmaModel turma;
 

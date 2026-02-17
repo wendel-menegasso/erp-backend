@@ -21,9 +21,9 @@ public class AlunoDto {
     private Endereco endereco;
     private Contato contato;
     private Documento documentos;
-    private int numeroDeMatricula;
-    private boolean bolsista;
+    private Integer numeroDeMatricula;
+    private Boolean bolsista;
     private Curso curso;
-    private int valorBolsa;;
+    private Integer valorBolsa;;
     private Turma turma;
 }

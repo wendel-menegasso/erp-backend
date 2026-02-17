@@ -16,5 +16,5 @@ public class EnderecoDto {
     private String estado;
     private String pais;
     private String cep;
-    private int numero;
+    private Integer numero;
 }

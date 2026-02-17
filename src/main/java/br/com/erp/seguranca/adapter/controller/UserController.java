@@ -1,12 +1,8 @@
 package br.com.erp.seguranca.adapter.controller;
 
-import br.com.erp.educacional.domain.repository.contato.ContatoRepository;
-import br.com.erp.educacional.usecases.contato.CasoDeUsoCriarContato;
-import br.com.erp.seguranca.adapter.repository.UserRepositoryJpa;
 import br.com.erp.seguranca.domain.entity.Token;
 import br.com.erp.seguranca.domain.entity.User;
 import br.com.erp.seguranca.usecases.auth.LoadUserByUsernameUseCase;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;

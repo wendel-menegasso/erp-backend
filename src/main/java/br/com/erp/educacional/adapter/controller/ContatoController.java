@@ -3,11 +3,14 @@ package br.com.erp.educacional.adapter.controller;
 import br.com.erp.educacional.adapter.dto.ContatoDto;
 import br.com.erp.educacional.domain.entity.contato.Contato;
 import br.com.erp.educacional.usecases.contato.CasoDeUsoCriarContato;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:8080")
 public class ContatoController {
     private final CasoDeUsoCriarContato useCase;
 
@@ -16,6 +19,7 @@ public class ContatoController {
     }
 
     @PostMapping("/contato")
+    @PreAuthorize("hasAuthority('/contato')")
     public void criar(@RequestBody ContatoDto dto) {
         Contato contato = new Contato();
         contato.setEmail1(dto.getEmail1());

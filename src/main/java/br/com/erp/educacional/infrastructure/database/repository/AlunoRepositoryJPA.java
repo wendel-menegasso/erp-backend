@@ -1,6 +1,7 @@
 package br.com.erp.educacional.infrastructure.database.repository;
 
 import br.com.erp.educacional.domain.entity.aluno.Aluno;
+import br.com.erp.educacional.domain.entity.commons.Endereco;
 import br.com.erp.educacional.domain.repository.aluno.AlunoRepository;
 import br.com.erp.educacional.infrastructure.database.model.*;
 import jakarta.persistence.EntityManager;
@@ -19,30 +20,23 @@ public class AlunoRepositoryJPA implements AlunoRepository {
         alunoModel.setNome(aluno.getNome());
         alunoModel.setBolsista(aluno.isBolsista());
 
-        ContatoModel contatoModel = new ContatoModel();
-        contatoModel.setEmail1(aluno.getContato().getEmail1());
-        contatoModel.setEmail2(aluno.getContato().getEmail2());
-        contatoModel.setEmail3(aluno.getContato().getEmail3());
-        contatoModel.setTelefone1(aluno.getContato().getTelefone1());
-        contatoModel.setTelefone2(aluno.getContato().getTelefone2());
-        contatoModel.setTelefone3(aluno.getContato().getTelefone3());
+        ContatoModel contatoModel = getContatoModel(aluno);
         alunoModel.setContatos(contatoModel);
 
         alunoModel.setMae(aluno.getMae());
         CursoModel cursoModel = new CursoModel();
+        cursoModel.setId(aluno.getCurso().getId());
         cursoModel.setNome(aluno.getCurso().getNome());
         cursoModel.setPeriodo(aluno.getCurso().getPeriodo());
         alunoModel.setCurso(cursoModel);
 
         DocumentoModel documentoModel = getDocumentoModel(aluno);
         alunoModel.setDocumentos(documentoModel);
-
-        EnderecoModel enderecoModel = getEnderecoModel(aluno, alunoModel);
-
-        alunoModel.setEnderecos(enderecoModel);
+        alunoModel.setEnderecos(getEnderecoModel(aluno.getEndereco(), alunoModel));
         alunoModel.setPai(aluno.getPai());
         
         TurmaModel turmaModel = new TurmaModel();
+        turmaModel.setId(aluno.getTurma().getId());
         turmaModel.setNome(aluno.getTurma().getNome());
         turmaModel.setPeriodo(aluno.getTurma().getPeriodo());
         alunoModel.setTurma(turmaModel);
@@ -51,8 +45,21 @@ public class AlunoRepositoryJPA implements AlunoRepository {
         em.persist(alunoModel);
     }
 
-    private static DocumentoModel getDocumentoModel(Aluno aluno) {
+    private static ContatoModel getContatoModel(Aluno aluno) {
+        ContatoModel contatoModel = new ContatoModel();
+        contatoModel.setId(aluno.getContato().getId());
+        contatoModel.setEmail1(aluno.getContato().getEmail1());
+        contatoModel.setEmail2(aluno.getContato().getEmail2());
+        contatoModel.setEmail3(aluno.getContato().getEmail3());
+        contatoModel.setTelefone1(aluno.getContato().getTelefone1());
+        contatoModel.setTelefone2(aluno.getContato().getTelefone2());
+        contatoModel.setTelefone3(aluno.getContato().getTelefone3());
+        return contatoModel;
+    }
+
+    private DocumentoModel getDocumentoModel(Aluno aluno) {
         DocumentoModel documentoModel = new DocumentoModel();
+        documentoModel.setId(aluno.getDocumentos().getId());
         documentoModel.setTituloDeEleitor(aluno.getDocumentos().getTituloDeEleitor());
         documentoModel.setRG(aluno.getDocumentos().getRG());
         documentoModel.setOAB(aluno.getDocumentos().getOAB());
@@ -63,16 +70,17 @@ public class AlunoRepositoryJPA implements AlunoRepository {
         return documentoModel;
     }
 
-    private static EnderecoModel getEnderecoModel(Aluno aluno, AlunoModel alunoModel) {
+    private static EnderecoModel getEnderecoModel(Endereco endereco, AlunoModel alunoModel) {
         EnderecoModel enderecoModel = new EnderecoModel();
+        enderecoModel.setId(endereco.getId());
         enderecoModel.setAluno(alunoModel);
-        enderecoModel.setNumero(aluno.getEndereco().getNumero());
-        enderecoModel.setBairro(aluno.getEndereco().getBairro());
-        enderecoModel.setPais(aluno.getEndereco().getPais());
-        enderecoModel.setRua(aluno.getEndereco().getRua());
-        enderecoModel.setCidade(aluno.getEndereco().getCidade());
-        enderecoModel.setEstado(aluno.getEndereco().getEstado());
-        enderecoModel.setCep(aluno.getEndereco().getCep());
+        enderecoModel.setNumero(endereco.getNumero());
+        enderecoModel.setBairro(endereco.getBairro());
+        enderecoModel.setPais(endereco.getPais());
+        enderecoModel.setRua(endereco.getRua());
+        enderecoModel.setCidade(endereco.getCidade());
+        enderecoModel.setEstado(endereco.getEstado());
+        enderecoModel.setCep(endereco.getCep());
         return enderecoModel;
     }
 }

@@ -20,11 +20,11 @@ public class EnderecoModel {
     private String cep;
     private int numero;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "aluno_id")
     private AlunoModel aluno;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "professor_id")
     private ProfessorModel professor;
 
