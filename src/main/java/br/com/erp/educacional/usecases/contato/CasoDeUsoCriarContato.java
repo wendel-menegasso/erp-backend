@@ -10,7 +10,8 @@ public class CasoDeUsoCriarContato {
         this.contatoRepository = contatoRepository;
     }
 
-    public void execute(Contato contato) {
+    public int execute(Contato contato) {
         contatoRepository.save(contato);
+        return contatoRepository.count();
     }
 }

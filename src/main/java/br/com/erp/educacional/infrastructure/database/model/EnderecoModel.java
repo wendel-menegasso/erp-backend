@@ -20,8 +20,8 @@ public class EnderecoModel {
     private String cep;
     private int numero;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "aluno_id")
+    @OneToOne
+    @JoinColumn(name = "aluno_id", referencedColumnName = "id")
     private AlunoModel aluno;
 
     @OneToOne(cascade = CascadeType.ALL)

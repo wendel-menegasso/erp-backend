@@ -3,6 +3,7 @@ package br.com.erp.educacional.adapter.controller;
 import br.com.erp.educacional.adapter.dto.ContatoDto;
 import br.com.erp.educacional.domain.entity.contato.Contato;
 import br.com.erp.educacional.usecases.contato.CasoDeUsoCriarContato;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,7 +21,7 @@ public class ContatoController {
 
     @PostMapping("/contato")
     @PreAuthorize("hasAuthority('/contato')")
-    public void criar(@RequestBody ContatoDto dto) {
+    public ResponseEntity<Integer> criar(@RequestBody ContatoDto dto) {
         Contato contato = new Contato();
         contato.setEmail1(dto.getEmail1());
         contato.setEmail2(dto.getEmail2());
@@ -28,6 +29,7 @@ public class ContatoController {
         contato.setTelefone1(dto.getTelefone1());
         contato.setTelefone2(dto.getTelefone2());
         contato.setTelefone3(dto.getTelefone3());
-        useCase.execute(contato);
+        int count = useCase.execute(contato);
+        return ResponseEntity.ok(count);
     }
 }

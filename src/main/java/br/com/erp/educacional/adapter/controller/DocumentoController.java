@@ -2,6 +2,7 @@ package br.com.erp.educacional.adapter.controller;
 
 import br.com.erp.educacional.adapter.dto.DocumentoDto;
 import br.com.erp.educacional.usecases.documento.CasoDeUsoCriarDocumento;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,7 +20,7 @@ public class DocumentoController {
 
     @PostMapping("/documento")
     @PreAuthorize("hasAuthority('documento')")
-    public void criar(@RequestBody DocumentoDto dto) {
-        useCase.execute(dto);
+    public ResponseEntity<Integer> criar(@RequestBody DocumentoDto dto) {
+        return ResponseEntity.ok(useCase.execute(dto));
     }
 }

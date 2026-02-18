@@ -4,14 +4,14 @@ import br.com.erp.educacional.adapter.dto.EnderecoDto;
 import br.com.erp.educacional.domain.entity.commons.Endereco;
 import br.com.erp.educacional.domain.repository.common.EnderecoRepository;
 
-public class CasoDeUsoCriarEndereco {
+public class CasoDeUsoDeletarEndereco {
     private final EnderecoRepository enderecoRepository;
 
-    public CasoDeUsoCriarEndereco(EnderecoRepository enderecoRepository) {
+    public CasoDeUsoDeletarEndereco(EnderecoRepository enderecoRepository) {
         this.enderecoRepository = enderecoRepository;
     }
 
-    public int execute(EnderecoDto enderecoDto) {
+    public void execute(EnderecoDto enderecoDto, Integer id) {
         Endereco endereco = new Endereco();
         endereco.setBairro(enderecoDto.getBairro());
         endereco.setCep(enderecoDto.getCep());
@@ -20,7 +20,7 @@ public class CasoDeUsoCriarEndereco {
         endereco.setEstado(enderecoDto.getEstado());
         endereco.setCidade(enderecoDto.getCidade());
         endereco.setRua(enderecoDto.getRua());
-        enderecoRepository.save(endereco);
-        return enderecoRepository.count();
+        endereco.setId(id);
+        enderecoRepository.remove(endereco);
     }
 }

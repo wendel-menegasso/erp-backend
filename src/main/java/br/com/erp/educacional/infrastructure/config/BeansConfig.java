@@ -12,17 +12,23 @@ import br.com.erp.educacional.infrastructure.database.repository.*;
 import br.com.erp.educacional.usecases.aluno.CasoDeUsoCriarAluno;
 import br.com.erp.educacional.usecases.contato.CasoDeUsoAcharContatoPeloId;
 import br.com.erp.educacional.usecases.contato.CasoDeUsoCriarContato;
+import br.com.erp.educacional.usecases.contato.CasoDeUsoDeletarContato;
 import br.com.erp.educacional.usecases.curso.CasoDeUsoAcharCursoPeloId;
 import br.com.erp.educacional.usecases.curso.CasoDeUsoCriarCurso;
+import br.com.erp.educacional.usecases.curso.CasoDeUsoDeletarCurso;
+import br.com.erp.educacional.usecases.curso.CasoDeUsoRetornarTudo;
 import br.com.erp.educacional.usecases.disciplina.CasoDeUsoCriarDisciplina;
 import br.com.erp.educacional.usecases.disciplina.CasoDeUsoVerificarSeDisciplinaExiste;
 import br.com.erp.educacional.usecases.documento.CasoDeUsoAcharDocumentoPeloId;
 import br.com.erp.educacional.usecases.documento.CasoDeUsoCriarDocumento;
+import br.com.erp.educacional.usecases.documento.CasoDeUsoDeletarDocumento;
 import br.com.erp.educacional.usecases.endereco.CasoDeUsoAcharEnderecoPeloId;
 import br.com.erp.educacional.usecases.endereco.CasoDeUsoCriarEndereco;
+import br.com.erp.educacional.usecases.endereco.CasoDeUsoDeletarEndereco;
 import br.com.erp.educacional.usecases.nota.CasoDeUsoCriarNota;
 import br.com.erp.educacional.usecases.turma.CasoDeUsoAcharTurmaPeloId;
 import br.com.erp.educacional.usecases.turma.CasoDeUsoCriarTurma;
+import br.com.erp.educacional.usecases.turma.CasoDeUsoDeletarTurma;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -124,4 +130,35 @@ public class BeansConfig {
     public CasoDeUsoAcharCursoPeloId casoDeUsoAcharCursoPeloId(CursoRepository repo) {
         return new CasoDeUsoAcharCursoPeloId(repo);
     }
+
+    @Bean
+    public CasoDeUsoDeletarTurma casoDeUsoDeletarTurma(TurmaRepository repo) {
+        return new CasoDeUsoDeletarTurma(repo);
+    }
+
+    @Bean
+    public CasoDeUsoDeletarEndereco casoDeUsoDeletarEndereco(EnderecoRepository repo) {
+        return new CasoDeUsoDeletarEndereco(repo);
+    }
+
+    @Bean
+    public CasoDeUsoDeletarContato casoDeUsoDeletarContato(ContatoRepository repo) {
+        return new CasoDeUsoDeletarContato(repo);
+    }
+
+    @Bean
+    CasoDeUsoDeletarDocumento casoDeUsoDeletarDocumento(DocumentoRepository repo) {
+        return new CasoDeUsoDeletarDocumento(repo);
+    }
+
+    @Bean
+    CasoDeUsoDeletarCurso casoDeUsoDeletarCurso(CursoRepository repo) {
+        return new CasoDeUsoDeletarCurso(repo);
+    }
+
+    @Bean
+    CasoDeUsoRetornarTudo casoDeUsoRetornarTudo(CursoRepository repo) {
+        return new CasoDeUsoRetornarTudo(repo);
+    }
+
 }

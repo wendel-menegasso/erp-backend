@@ -24,22 +24,13 @@ public class AlunoRepositoryJPA implements AlunoRepository {
         alunoModel.setContatos(contatoModel);
 
         alunoModel.setMae(aluno.getMae());
-        CursoModel cursoModel = new CursoModel();
-        cursoModel.setId(aluno.getCurso().getId());
-        cursoModel.setNome(aluno.getCurso().getNome());
-        cursoModel.setPeriodo(aluno.getCurso().getPeriodo());
-        alunoModel.setCurso(cursoModel);
+        alunoModel.setCurso(aluno.getCurso());
 
         DocumentoModel documentoModel = getDocumentoModel(aluno);
         alunoModel.setDocumentos(documentoModel);
         alunoModel.setEnderecos(getEnderecoModel(aluno.getEndereco(), alunoModel));
         alunoModel.setPai(aluno.getPai());
-        
-        TurmaModel turmaModel = new TurmaModel();
-        turmaModel.setId(aluno.getTurma().getId());
-        turmaModel.setNome(aluno.getTurma().getNome());
-        turmaModel.setPeriodo(aluno.getTurma().getPeriodo());
-        alunoModel.setTurma(turmaModel);
+
         alunoModel.setValorBolsa(aluno.getValorBolsa());
         alunoModel.setNumeroDeMatricula(aluno.getNumeroDeMatricula());
         em.persist(alunoModel);
@@ -47,7 +38,6 @@ public class AlunoRepositoryJPA implements AlunoRepository {
 
     private static ContatoModel getContatoModel(Aluno aluno) {
         ContatoModel contatoModel = new ContatoModel();
-        contatoModel.setId(aluno.getContato().getId());
         contatoModel.setEmail1(aluno.getContato().getEmail1());
         contatoModel.setEmail2(aluno.getContato().getEmail2());
         contatoModel.setEmail3(aluno.getContato().getEmail3());
@@ -59,7 +49,6 @@ public class AlunoRepositoryJPA implements AlunoRepository {
 
     private DocumentoModel getDocumentoModel(Aluno aluno) {
         DocumentoModel documentoModel = new DocumentoModel();
-        documentoModel.setId(aluno.getDocumentos().getId());
         documentoModel.setTituloDeEleitor(aluno.getDocumentos().getTituloDeEleitor());
         documentoModel.setRG(aluno.getDocumentos().getRG());
         documentoModel.setOAB(aluno.getDocumentos().getOAB());
@@ -72,7 +61,7 @@ public class AlunoRepositoryJPA implements AlunoRepository {
 
     private static EnderecoModel getEnderecoModel(Endereco endereco, AlunoModel alunoModel) {
         EnderecoModel enderecoModel = new EnderecoModel();
-        enderecoModel.setId(endereco.getId());
+        enderecoModel.setId(enderecoModel.getId());
         enderecoModel.setAluno(alunoModel);
         enderecoModel.setNumero(endereco.getNumero());
         enderecoModel.setBairro(endereco.getBairro());

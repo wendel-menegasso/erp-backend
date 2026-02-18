@@ -19,7 +19,7 @@ public class Aluno {
     private Documento documentos;
     private int numeroDeMatricula;
     private boolean bolsista;
-    private Curso curso;
+    private Integer curso;
     private int valorBolsa;;
     private Turma turma;
 }

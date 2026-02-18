@@ -7,4 +7,6 @@ import java.util.Optional;
 public interface EnderecoRepository {
     void save(Endereco endereco);
     Optional<Endereco> findById(Integer id);
+    void remove(Endereco endereco);
+    int count();
 }

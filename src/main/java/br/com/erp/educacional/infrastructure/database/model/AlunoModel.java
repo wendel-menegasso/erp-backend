@@ -19,24 +19,23 @@ public class AlunoModel {
     private String pai;
     private String mae;
 
-    @OneToOne(mappedBy = "aluno", cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "enderecos_id", referencedColumnName = "id")
     private EnderecoModel enderecos;
 ;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "contatos_id")
+    @JoinColumn(name = "contatos_id", referencedColumnName = "id")
     private ContatoModel contatos;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "documento_id")
+    @JoinColumn(name = "documento_id", referencedColumnName = "id")
     private DocumentoModel documentos;
 
     private int numeroDeMatricula;
     private boolean bolsista;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "curso_id")
-    private CursoModel curso;
+    private int curso;
 
     private int valorBolsa;
 

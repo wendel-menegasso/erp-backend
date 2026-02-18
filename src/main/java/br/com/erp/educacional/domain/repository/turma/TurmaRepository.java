@@ -7,4 +7,5 @@ import java.util.Optional;
 public interface TurmaRepository {
     void save(Turma turma);
     Optional<Turma> findById(Integer id);
+    void remove(Turma turma);
 }

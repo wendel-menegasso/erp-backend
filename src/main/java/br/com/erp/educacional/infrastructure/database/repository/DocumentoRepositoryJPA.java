@@ -2,10 +2,14 @@ package br.com.erp.educacional.infrastructure.database.repository;
 
 import br.com.erp.educacional.domain.entity.commons.Documento;
 import br.com.erp.educacional.domain.repository.common.DocumentoRepository;
+import br.com.erp.educacional.infrastructure.database.model.ContatoModel;
 import br.com.erp.educacional.infrastructure.database.model.DocumentoModel;
 import br.com.erp.seguranca.infrastructure.jpa.UserModel;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Root;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
@@ -41,6 +45,33 @@ public class DocumentoRepositoryJPA implements DocumentoRepository {
                 .findFirst()
                 .map(this::toDomain);
     }
+
+    @Override
+    @Transactional
+    public void remove(Documento documento) {
+        DocumentoModel documentoModel = new DocumentoModel();
+        documentoModel.setRG(documento.getRG());
+        documentoModel.setReservista(documento.getReservista());
+        documentoModel.setCREA(documento.getCREA());
+        documentoModel.setOAB(documento.getOAB());
+        documentoModel.setCPF(documento.getCPF());
+        documentoModel.setCarteiraDeTralho(documento.getCarteiraDeTralho());
+        documentoModel.setTituloDeEleitor(documento.getTituloDeEleitor());
+        documentoModel.setId(documento.getId());
+        DocumentoModel e = em.find(DocumentoModel.class, documentoModel.getId());
+        em.remove(e);
+    }
+
+    @Override
+    public int count() {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<DocumentoModel> cq = cb.createQuery(DocumentoModel.class);
+        Root<DocumentoModel> root = cq.from(DocumentoModel.class);
+        cq.select(root);
+        int index = em.createQuery(cq).getResultList().size() - 1;
+        return em.createQuery(cq).getResultList().get(index).getId();
+    }
+
 
     private Documento toDomain(DocumentoModel model) {
         Documento documento = new Documento();

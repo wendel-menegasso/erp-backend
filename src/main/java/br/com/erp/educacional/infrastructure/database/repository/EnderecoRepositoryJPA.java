@@ -7,6 +7,9 @@ import br.com.erp.educacional.infrastructure.database.model.DocumentoModel;
 import br.com.erp.educacional.infrastructure.database.model.EnderecoModel;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Root;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
@@ -41,6 +44,32 @@ public class EnderecoRepositoryJPA implements EnderecoRepository {
         return query.getResultStream()
                 .findFirst()
                 .map(this::toDomain);
+    }
+
+    @Override
+    @Transactional
+    public void remove(Endereco endereco) {
+        EnderecoModel enderecoModel = new EnderecoModel();
+        enderecoModel.setCep(endereco.getCep());
+        enderecoModel.setEstado(endereco.getEstado());
+        enderecoModel.setCidade(endereco.getCidade());
+        enderecoModel.setPais(endereco.getPais());
+        enderecoModel.setRua(endereco.getRua());
+        enderecoModel.setBairro(endereco.getBairro());
+        enderecoModel.setNumero(endereco.getNumero());
+        enderecoModel.setId(endereco.getId());
+        EnderecoModel e = em.find(EnderecoModel.class, enderecoModel.getId());
+        em.remove(e);
+    }
+
+    @Override
+    public int count() {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<EnderecoModel> cq = cb.createQuery(EnderecoModel.class);
+        Root<EnderecoModel> root = cq.from(EnderecoModel.class);
+        cq.select(root);
+        int index = em.createQuery(cq).getResultList().size() - 1;
+        return em.createQuery(cq).getResultList().get(index).getId();
     }
 
     private Endereco toDomain(EnderecoModel model) {

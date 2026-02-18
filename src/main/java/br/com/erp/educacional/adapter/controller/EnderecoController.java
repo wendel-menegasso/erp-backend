@@ -2,6 +2,7 @@ package br.com.erp.educacional.adapter.controller;
 
 import br.com.erp.educacional.adapter.dto.EnderecoDto;
 import br.com.erp.educacional.usecases.endereco.CasoDeUsoCriarEndereco;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,7 +20,7 @@ public class EnderecoController {
 
     @PostMapping("/endereco")
     @PreAuthorize("hasAuthority('/endereco')")
-    public void criar(@RequestBody EnderecoDto dto) {
-        useCase.execute(dto);
+    public ResponseEntity<Integer> criar(@RequestBody EnderecoDto dto) {
+        return ResponseEntity.ok(useCase.execute(dto));
     }
 }

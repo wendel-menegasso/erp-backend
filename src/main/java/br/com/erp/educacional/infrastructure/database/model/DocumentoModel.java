@@ -19,4 +19,7 @@ public class DocumentoModel {
     private String TituloDeEleitor;
     private String OAB;
     private String CREA;
+    @OneToOne
+    @JoinColumn(name = "aluno_id", referencedColumnName = "id")
+    private AlunoModel aluno;
 }

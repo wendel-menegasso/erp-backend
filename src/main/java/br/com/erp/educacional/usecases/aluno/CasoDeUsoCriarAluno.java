@@ -20,21 +20,6 @@ import java.util.Optional;
 public class CasoDeUsoCriarAluno {
     private final AlunoRepository repository;
 
-    @Autowired
-    private CasoDeUsoAcharDocumentoPeloId casoDeUsoAcharDocumentoPeloId;
-
-    @Autowired
-    private CasoDeUsoAcharEnderecoPeloId casoDeUsoAcharEnderecoPeloId;
-
-    @Autowired
-    private CasoDeUsoAcharContatoPeloId casoDeUsoAcharContatoPeloId;
-
-    @Autowired
-    private CasoDeUsoAcharTurmaPeloId casoDeUsoAcharTurmaPeloId;
-
-    @Autowired
-    private CasoDeUsoAcharCursoPeloId casoDeUsoAcharCursoPeloId;
-
     public CasoDeUsoCriarAluno(AlunoRepository repository) {
         this.repository = repository;
     }
@@ -43,13 +28,12 @@ public class CasoDeUsoCriarAluno {
         Aluno aluno = new Aluno();
         aluno.setNome(dto.getNome());
         aluno.setBolsista(dto.getBolsista());
-        aluno.setContato(casoDeUsoAcharContatoPeloId.execute(dto.getContato().getId()));
+        aluno.setContato(dto.getContato());
         aluno.setMae(dto.getMae());
-        aluno.setCurso(casoDeUsoAcharCursoPeloId.execute(dto.getCurso().getId()));
-        aluno.setDocumentos(casoDeUsoAcharDocumentoPeloId.execute(dto.getDocumentos().getId()));
-        aluno.setEndereco(casoDeUsoAcharEnderecoPeloId.execute(dto.getEndereco().getId()));
+        aluno.setCurso(dto.getCurso());
+        aluno.setDocumentos(dto.getDocumentos());
+        aluno.setEndereco(dto.getEndereco());
         aluno.setPai(dto.getPai());
-        aluno.setTurma(casoDeUsoAcharTurmaPeloId.execute(dto.getTurma().getId()));
         aluno.setValorBolsa(dto.getValorBolsa());
         aluno.setNumeroDeMatricula(dto.getNumeroDeMatricula());
         repository.save(aluno);

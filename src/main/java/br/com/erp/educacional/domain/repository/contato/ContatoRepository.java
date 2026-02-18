@@ -7,4 +7,6 @@ import java.util.Optional;
 public interface ContatoRepository {
     void save(Contato contato);
     Optional<Contato> findById(Integer id);
+    void remove(Contato contato);
+    int count();
 }

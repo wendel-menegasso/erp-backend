@@ -38,6 +38,16 @@ public class TurmaRepositoryJPA implements TurmaRepository {
                 .map(this::toDomain);
     }
 
+    @Override
+    @Transactional
+    public void remove(Turma turma) {
+        TurmaModel turmaModel = new TurmaModel();
+        turmaModel.setPeriodo(turma.getPeriodo());
+        turmaModel.setNome(turma.getNome());
+        turmaModel.setId(turma.getId());
+        em.persist(turmaModel);
+    }
+
     private Turma toDomain(TurmaModel model) {
         Turma turma = new Turma();
         turma.setNome(model.getNome());

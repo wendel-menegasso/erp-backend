@@ -4,14 +4,14 @@ import br.com.erp.educacional.adapter.dto.DocumentoDto;
 import br.com.erp.educacional.domain.entity.commons.Documento;
 import br.com.erp.educacional.domain.repository.common.DocumentoRepository;
 
-public class CasoDeUsoCriarDocumento {
+public class CasoDeUsoDeletarDocumento {
     private final DocumentoRepository repository;
 
-    public CasoDeUsoCriarDocumento(DocumentoRepository repository) {
+    public CasoDeUsoDeletarDocumento(DocumentoRepository repository) {
         this.repository = repository;
     }
 
-    public int execute(DocumentoDto documentoDto) {
+    public void execute(DocumentoDto documentoDto, Integer id) {
         Documento documento = new Documento();
         documento.setRG(documentoDto.getRg());
         documento.setCPF(documentoDto.getCpf());
@@ -20,8 +20,7 @@ public class CasoDeUsoCriarDocumento {
         documento.setCREA(documentoDto.getCrea());
         documento.setReservista(documentoDto.getReservista());
         documento.setOAB(documentoDto.getOab());
-        repository.save(documento);
-        return repository.count();
+        documento.setId(id);
+        repository.remove(documento);
     }
-
 }

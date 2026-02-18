@@ -40,11 +40,7 @@ public class NotaRepositoryJPA implements NotaRepository {
         alunoModel.setMae(nota.getAluno().getMae());
         alunoModel.setPai((nota.getAluno().getPai()));
 
-        CursoModel cursoModel = new CursoModel();
-        cursoModel.setNome(nota.getAluno().getCurso().getNome());
-        cursoModel.setPeriodo(nota.getAluno().getCurso().getPeriodo());
-        cursoModel.setId(nota.getAluno().getCurso().getId());
-        alunoModel.setCurso(cursoModel);
+        alunoModel.setCurso(nota.getAluno().getCurso());
 
         EnderecoModel enderecoModel = getEnderecoModel(nota);
         alunoModel.setEnderecos(enderecoModel);
