@@ -17,7 +17,6 @@ public class NotaControllerTest {
         CasoDeUsoCriarNota useCase = Mockito.mock(CasoDeUsoCriarNota.class);
 
         NotaDTO notaDTO = new NotaDTO();
-        notaDTO.id = 1;
         notaDTO.nota = 100;
         notaDTO.peso = 10;
         notaDTO.disciplina = new Disciplina();
@@ -26,7 +25,7 @@ public class NotaControllerTest {
 
         NotaController notaController = new NotaController(useCase);
         notaController.criar(notaDTO);
-        verify(useCase, times(1)).execute(notaDTO.id, notaDTO.aluno,
+        verify(useCase, times(1)).execute(notaDTO.aluno,
                 notaDTO.disciplina, notaDTO.professor, notaDTO.peso, notaDTO.nota);
     }
 }

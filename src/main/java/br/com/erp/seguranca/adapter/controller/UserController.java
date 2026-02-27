@@ -2,13 +2,16 @@ package br.com.erp.seguranca.adapter.controller;
 
 import br.com.erp.seguranca.domain.entity.Token;
 import br.com.erp.seguranca.domain.entity.User;
+import br.com.erp.seguranca.usecases.auth.CasoDeUsoFindAll;
 import br.com.erp.seguranca.usecases.auth.LoadUserByUsernameUseCase;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -17,6 +20,9 @@ import java.util.Optional;
 public class UserController {
 
     private final LoadUserByUsernameUseCase useCase;
+
+    @Autowired
+    private CasoDeUsoFindAll casoDeUsoFindAll;
 
     public UserController(LoadUserByUsernameUseCase useCase) {
         this.useCase = useCase;
@@ -46,5 +52,12 @@ public class UserController {
 
         if (user.isPresent()) return ResponseEntity.ok(resposta);
         else return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciais inválidas");
+    }
+
+    @GetMapping("/config/users")
+    @PreAuthorize("hasAuthority('/config/users')")
+    public ResponseEntity<List<?>> getUsers() {
+        List<User> users = casoDeUsoFindAll.executar();
+        return ResponseEntity.status(HttpStatus.OK).body(users);
     }
 }

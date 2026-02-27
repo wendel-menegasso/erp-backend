@@ -7,12 +7,14 @@ public class User {
     private final String username;
     private final String passwordHash;
     private final Set<Role> roles;
+    private final Boolean ativo;
 
-    public User(String id, String username, String passwordHash, Set<Role> roles) {
+    public User(String id, String username, String passwordHash, Set<Role> roles, Boolean ativo) {
         this.id = id;
         this.username = username;
         this.passwordHash = passwordHash;
         this.roles = roles;
+        this.ativo = ativo;
     }
 
     public String getId() { return id; }

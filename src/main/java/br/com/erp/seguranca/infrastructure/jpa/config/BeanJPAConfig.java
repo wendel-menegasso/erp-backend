@@ -5,6 +5,7 @@ import br.com.erp.educacional.usecases.endereco.CasoDeUsoCriarEndereco;
 import br.com.erp.seguranca.adapter.repository.UserRepositoryJpa;
 import br.com.erp.seguranca.domain.repository.UserRepository;
 import br.com.erp.seguranca.infrastructure.security.config.JwtFilter;
+import br.com.erp.seguranca.usecases.auth.CasoDeUsoFindAll;
 import br.com.erp.seguranca.usecases.auth.FindByUsernameWithRolesUseCase;
 import br.com.erp.seguranca.usecases.auth.LoadUserByUsernameUseCase;
 import org.springframework.context.annotation.Bean;
@@ -25,5 +26,10 @@ public class BeanJPAConfig {
     @Bean
     public FindByUsernameWithRolesUseCase findByUsernameWithRolesUseCase(UserRepository repo) {
         return new FindByUsernameWithRolesUseCase(repo);
+    }
+
+    @Bean
+    public CasoDeUsoFindAll casoDeUsoFindAll(UserRepository repo) {
+        return new CasoDeUsoFindAll(repo);
     }
 }

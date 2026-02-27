@@ -32,7 +32,7 @@ public class CasoDeUsoCriarNotaTest {
         Aluno aluno1 = new Aluno();
         aluno1.setNome("Wendel");
         aluno1.setBolsista(true);
-        aluno1.setCurso(curso1);
+        aluno1.setCurso(curso1.getId());
 
         Disciplina disciplina = new Disciplina();
         disciplina.setId(1);
@@ -46,7 +46,7 @@ public class CasoDeUsoCriarNotaTest {
         cursoList.add(curso);
 
         Professor professor1 = new Professor();
-        casoDeUsoCriarNota.execute(1, aluno1, disciplina, professor1, 10, 100);
+        casoDeUsoCriarNota.execute(aluno1, disciplina, professor1, 10, 100);
         verify(notaRepository, times(1)).save(any());
     }
 }

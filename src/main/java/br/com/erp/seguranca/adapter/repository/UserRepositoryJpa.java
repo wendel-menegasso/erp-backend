@@ -9,6 +9,7 @@ import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -63,6 +64,20 @@ public class UserRepositoryJpa implements UserRepository {
         return userModel.map(this::toDomainWithRolesAndSubroles);
     }
 
+    @Override
+    public List<User> findAll() {
+        var query = em.createQuery(
+                "SELECT u FROM UserModel u",
+                UserModel.class
+        );
+
+        return query.getResultStream()
+                .findFirst()
+                .map(this::toDomain)
+                .stream()
+                .toList();
+    }
+
 
     private User toDomainWithRolesAndSubroles(UserModel model) {
 
@@ -82,7 +97,8 @@ public class UserRepositoryJpa implements UserRepository {
                 model.getId(),
                 model.getUsername(),
                 model.getPasswordHash(),
-                roles
+                roles,
+                model.getAtivo()
         );
     }
 
@@ -98,7 +114,8 @@ public class UserRepositoryJpa implements UserRepository {
                 model.getId(),
                 model.getUsername(),
                 model.getPasswordHash(),
-                roles
+                roles,
+                model.getAtivo()
         );
     }
 }

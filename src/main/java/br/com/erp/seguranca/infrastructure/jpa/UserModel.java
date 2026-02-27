@@ -17,6 +17,7 @@ public class UserModel {
 
     private String username;
     private String passwordHash;
+    private Boolean ativo;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
